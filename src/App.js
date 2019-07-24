@@ -1,25 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './scss/normalize.css';
+import './scss/skeleton.css';
+import './scss/style.css';
+import {Route,Switch} from "react-router-dom";
+import Homepage from "./containers/Homepage";
+import New from "./containers/New";
+import Scrawl from "./containers/Scrawl";
+import Edit from "./containers/Edit";
+import 'font-awesome/css/font-awesome.min.css';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+        <Switch>
+            <Route path="/" exact component={Homepage} />
+            <Route path="/new" exact component={New} />
+            <Route path="/edit/:slug" exact component={Edit} />
+            <Route path="/scrawl/:slug" exact component={Scrawl} />
+        </Switch>
+      </div>
   );
 }
 
