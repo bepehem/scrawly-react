@@ -6,8 +6,8 @@ class Edit extends Component{
 
     handleSubmit(event) {
     event.preventDefault();
-    this.props.choiceAdd({
-        choices: this.props.choices,
+    this.props.updateChoices({
+        choices: this.props.scrawl.choices,
     });
 }
 
@@ -22,24 +22,23 @@ class Edit extends Component{
             <section className="bg-blue">
                 <h1>Edit Scrawly</h1>
             </section>
-
             <section className="container form-new">
 
                 <label htmlFor="title">Title</label>
-                <input type="text" id="title" value={this.props.title} disabled/>
+                <input type="text" id="title" value={this.props.scrawl.title}/>
                     <ul>
                         <li>
-                            {this.props.choices}
+                            {this.props.scrawl.choices}
                         </li>
                     </ul>
-                    <form>
-                        <input type="date"/>
-                            <button type="submit" className="button button-primary" onChange={event => this.props.choiceAdd(event.target.value)} value={this.props.choices}>
+                    <form onSubmit={event => this.handleSubmit(event)}>
+                        <input type="date"placeholder="Scrawl Date" value={this.props.date} onChange={event => this.props.updateChoices(event.target.value)}/>
+                            <button type="submit" className="button button-primary">
                                 <i className="fa fa-plus"/>
-                                    Add
+                                    Add choice
                             </button>
                     </form>
-                    <button type="submit" onSubmit={event => this.handleSubmit(event)} className="button button-primary">
+                    <button type="submit"  className="button button-primary">
                         <i className="fa fa-check"/>
                         Finish
                     </button>

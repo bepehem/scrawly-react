@@ -1,19 +1,19 @@
 import {connect} from "react-redux";
-import {choiceAdd} from "../actions/scrawly";
+import {searchScrawl, updateChoices, updateSlug} from "../actions/scrawly";
 import Edit from "../components/Edit";
 
 // Envoyer des données du state au composant
 const mapStateToProps = state => {
     return {
-        title: state.scrawly.scrawl.title,
-        slug: state.scrawly.scrawl.slug,
-        choices: state.scrawly.scrawl.choices,
+        scrawl: state.scrawly.scrawl,
     }
 };
 
 // Envoyer des actions au composant
 const mapDispatchToProps = dispatch => ({
-    choiceAdd : choices => dispatch(choiceAdd(choices)),
+    search: slug => dispatch(searchScrawl(slug)),
+    updateSlug: slug => dispatch(updateSlug(slug)),
+    updateChoices: choices => dispatch(updateChoices(choices)),
 });
 
 export default connect(

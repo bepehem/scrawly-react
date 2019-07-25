@@ -8,7 +8,7 @@ const mapStateToProps = state => {
         slug: state.scrawly.scrawl.slug,
         title: state.scrawly.scrawl.title,
         loading: state.scrawly.createScrawlLoading,
-        id:state.scrawly.scrawl["@id"]
+        id: state.scrawly.scrawl["@id"]
     }
 };
 

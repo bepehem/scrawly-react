@@ -2,13 +2,16 @@ import {
     CREATE_SCRAWL_LOADING,
     CREATE_SCRAWL_SUCCESS,
     CREATE_SCRAWL_ERROR,
-    CHOICE_ADD,
-    CHOICE_REMOVE,
+    CHOICE_ADD_SUCCESS,
+    CHOICE_ADD_LOADING,
+    CHOICE_ADD_ERROR,
     SEARCH_SCRAWL_LOADING,
     SEARCH_SCRAWL_SUCCESS,
     SEARCH_SCRAWL_ERROR,
     UPDATE_SLUG,
-    UPDATE_TITLE, CHOICE_SHOW
+    UPDATE_TITLE,
+    UPDATE_CHOICES,
+
 } from '../actions/scrawly'
 import slugme from 'slugme'
 
@@ -21,7 +24,8 @@ const initialState = {
     },
     error: "",
     scrawlLoading: false,
-    createScrawlLoading: false
+    createScrawlLoading: false,
+    addChoiceLoading: false
 };
 
 function scrawlyApp (state = initialState, action){
@@ -33,6 +37,10 @@ function scrawlyApp (state = initialState, action){
         case UPDATE_TITLE:
             return {...state,
                 scrawl: { ...state.scrawl, title: action.payload, slug:slugme(action.payload)}
+            };
+        case UPDATE_CHOICES:
+            return {...state,
+                scrawl: { ...state.scrawl, choices: action.payload}
             };
         case SEARCH_SCRAWL_LOADING:
             return{...state,
@@ -64,8 +72,27 @@ function scrawlyApp (state = initialState, action){
                 createScrawlLoading: false
             };
 
-        case CHOICE_ADD:
-            return{...state.choices, choices: action.payload};
+        case CHOICE_ADD_LOADING:
+            return {
+                ...state,
+                choiceAddLoading: true
+            };
+
+
+        case CHOICE_ADD_SUCCESS:
+            return{
+                ...state.choices,
+                choices: action.payload,
+                addChoiceLoading:false
+            };
+
+        case CHOICE_ADD_ERROR:
+            return {
+                ...state,
+                error: "Erreur lors de la création d'une date !",
+                createChoiceLoading: false
+            };
+
 
         default:
             return state;
