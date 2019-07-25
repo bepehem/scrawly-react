@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Redirect} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 class New extends Component {
 
@@ -21,7 +21,7 @@ class New extends Component {
         return (
             <div>
                 <section className="bg-blue">
-                    <h1>New Scrawl</h1>
+                    <h1><Link to="/"><i className="fa fa-home"/></Link>New Scrawl</h1>
                 </section>
 
                 <section className = "container form-new" >

@@ -110,12 +110,11 @@ export function createScrawlLoading() {
 }
 
 /**
- * CHOICES
+ * AJOUTER CHOICES dans API
  */
 
 
-
-export function choiceAdd(choice) {
+export function choicesAdd(choices) {
     return dispatch => {
         dispatch(choiceAddLoading());
         fetch(process.env.REACT_APP_API + 'choices', {
@@ -123,7 +122,7 @@ export function choiceAdd(choice) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(choice)
+            body: JSON.stringify(choices)
         })
             .then(response => response.json())
             .then(data => {
@@ -149,4 +148,24 @@ export function choiceAddError(choice) {
 
 export function choiceAddLoading(choice) {
     return {type: CHOICE_ADD_LOADING}
+}
+
+export function choicesShow(choices) {
+    return dispatch => {
+        fetch(process.env.REACT_APP_API + 'choices', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(choices)
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data["@type"] !== "hydra:Error") {
+                    dispatch(choiceAddSuccess(data))
+                } else {
+                    dispatch(choiceAddError());
+                }
+            });
+    }
 }

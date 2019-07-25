@@ -1,13 +1,20 @@
 import React, {Component} from 'react';
-import {Redirect} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 
 class Edit extends Component{
 
+
+    componentDidMount() {
+        const slug = /[^/]*$/.exec(this.props.location.pathname)[0];
+        this.props.search(slug);
+    }
+
     handleSubmit(event) {
     event.preventDefault();
-    this.props.updateChoices({
-        choices: this.props.scrawl.choices,
+    this.props.choicesAdd({
+        date: this.props.scrawl.choices,
+        poll: this.props.scrawl["@id"],
     });
 }
 
@@ -20,7 +27,7 @@ class Edit extends Component{
         return (
             <div>
             <section className="bg-blue">
-                <h1>Edit Scrawly</h1>
+                <h1><Link to="/"><i className="fa fa-home"/></Link>Edit your scrawl</h1>
             </section>
             <section className="container form-new">
 
@@ -32,13 +39,13 @@ class Edit extends Component{
                         </li>
                     </ul>
                     <form onSubmit={event => this.handleSubmit(event)}>
-                        <input type="date"placeholder="Scrawl Date" value={this.props.date} onChange={event => this.props.updateChoices(event.target.value)}/>
+                        <input type="date" placeholder="Scrawl Date" value={this.props.date} onChange={event => this.props.updateChoices(event.target.value)}/>
                             <button type="submit" className="button button-primary">
                                 <i className="fa fa-plus"/>
                                     Add choice
                             </button>
                     </form>
-                    <button type="submit"  className="button button-primary">
+                    <button type="submit" className="button button-primary" onSubmit={event => this.handleSubmit(event)}>
                         <i className="fa fa-check"/>
                         Finish
                     </button>

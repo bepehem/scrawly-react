@@ -11,7 +11,6 @@ import {
     UPDATE_SLUG,
     UPDATE_TITLE,
     UPDATE_CHOICES,
-
 } from '../actions/scrawly'
 import slugme from 'slugme'
 
@@ -81,7 +80,7 @@ function scrawlyApp (state = initialState, action){
 
         case CHOICE_ADD_SUCCESS:
             return{
-                ...state.choices,
+                ...state,
                 choices: action.payload,
                 addChoiceLoading:false
             };
