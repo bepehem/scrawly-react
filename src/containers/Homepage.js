@@ -6,7 +6,8 @@ import Homepage from "../components/Homepage";
 const mapStateToProps = state => {
     return {
         id:state.scrawly.scrawl["@id"],
-        slug: state.scrawly.scrawl.slug
+        scrawl: state.scrawly.scrawl,
+        loading: state.scrawly.scrawlLoading
     }
 };
 

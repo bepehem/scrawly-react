@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import md5 from 'md5';
-import ScrawlChoices from "./scrawlElements/ScrawlChoices";
 import {Link} from "react-router-dom";
 
 class Scrawl extends Component {
@@ -19,7 +18,7 @@ class Scrawl extends Component {
         if (this.props.loading) {
             return <div>Chargement en cours...</div>;
         } else if (!this.props.scrawl["@id"]) {
-            return <div>Scrawl introuvable ! </div>;
+            return <div> Scrawl introuvable ! </div>;
         }
 
         const gravatar = 'https://www.gravatar.com/avatar/' + md5('email du state ici') + '?s=32&d=robohash';

@@ -3,7 +3,6 @@ export const CREATE_SCRAWL_SUCCESS = "CREATE_SCRAWL_SUCCESS";
 export const CREATE_SCRAWL_ERROR = "CREATE_SCRAWL_ERROR";
 export const CHOICE_ADD_SUCCESS = "CHOICE_ADD_SUCESS";
 export const CHOICE_ADD_ERROR = "CHOICE_ADD_ERROR";
-export const CHOICE_ADD_LOADING = "CHOICE_ADD_LOADING";
 export const SEARCH_SCRAWL_LOADING = "SEARCH_SCRAWL_LOADING";
 export const SEARCH_SCRAWL_SUCCESS = "SEARCH_SCRAWL_SUCCESS";
 export const SEARCH_SCRAWL_ERROR = "SEARCH_SCRAWL_ERROR";
@@ -116,7 +115,6 @@ export function createScrawlLoading() {
 
 export function choicesAdd(choices) {
     return dispatch => {
-        dispatch(choiceAddLoading());
         fetch(process.env.REACT_APP_API + 'choices', {
             method: 'POST',
             headers: {
@@ -146,9 +144,6 @@ export function choiceAddError(choice) {
     return {type: CHOICE_ADD_ERROR}
 }
 
-export function choiceAddLoading(choice) {
-    return {type: CHOICE_ADD_LOADING}
-}
 
 export function choicesShow(choices) {
     return dispatch => {

@@ -71,13 +71,6 @@ function scrawlyApp (state = initialState, action){
                 createScrawlLoading: false
             };
 
-        case CHOICE_ADD_LOADING:
-            return {
-                ...state,
-                choiceAddLoading: true
-            };
-
-
         case CHOICE_ADD_SUCCESS:
             return{
                 ...state,

@@ -5,12 +5,13 @@ class Homepage extends Component{
 
 handleSubmit(event) {
     event.preventDefault();
-    this.props.search(this.props.slug);
+    this.props.search(this.props.scrawl.slug);
 }
 
 render() {
+
     if(this.props.id){
-       return <Redirect to={"/scrawl/"+ this.props.slug}/>
+        return <Redirect to={"/scrawl/"+ this.props.scrawl.slug}/>
     }
 
     return (
